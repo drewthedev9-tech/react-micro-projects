@@ -29,8 +29,8 @@ class validationForm extends Component {
          let emailError ="";
          let passwordError ="";
 
-        // name inout valudation
-        // if theres nothing in state
+        // name inout validation
+        // if theres nothing in state because handleChange would have occured.
         if (!this.state.name){
         // update name Error
             nameError = "name cannot be blank";
