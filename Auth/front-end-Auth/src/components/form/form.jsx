@@ -1,11 +1,14 @@
-import React, { Component } from 'react';
+import { Component } from 'react';
 
 
 const initialstate = { 
-    email: '',
+    username:'',
     password:'',
-     emailError: '',
-     passwordError:''
+    name: '',
+    usernameError:'',
+    emailError: '',
+    passwordError:'',
+
       
      }
 
@@ -22,29 +25,35 @@ state=initialstate;
         [event.target.name]:event.target.value
       })
       // testinng to see if state is updated
-      console.log( "state" + this.state.email)
+      console.log( "state" + this.state)
   
      }
 
      validate=()=>{
         let emailError = "";
         let passwordError = "";
+        let usernameError ='';
    
        // if email is not empty  email validation
         if(!this.state.email){
           emailError = "email input error! cannot be blank";
         }
    
-        if(this.state.password < 5)
+        if(!this.state.password)
        //  must match against database and API.
-        passwordError = "password must be entered"
+        passwordError = "password cannot be blank"
+
+        if(!this.state.username)
+        //  must match against database and API.
+         usernameError = "username cannot be blank"
    
    
        //  set the state from the validation
-       if(emailError || passwordError){
+       if(emailError || passwordError || usernameError){
          this.setState({
            emailError : emailError,
-           passwordError: passwordError
+           passwordError: passwordError,
+           usernameError: usernameError
          })
          return false
        }
@@ -61,7 +70,7 @@ state=initialstate;
       this.setState({
         initialstate : initialstate
       })
-
+    
       this.doSubmit();
   }
 
