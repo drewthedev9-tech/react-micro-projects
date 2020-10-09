@@ -29,7 +29,7 @@ class validationForm extends Component {
          let emailError ="";
          let passwordError ="";
 
-        // name inout validation
+        // name input validation
         // if theres nothing in state because handleChange would have occured.
         if (!this.state.name){
         // update name Error

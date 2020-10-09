@@ -2,7 +2,6 @@
 import React, { Component } from 'react';
 
 
-
 // setting state up ////
 
 class Counter extends Component {
