@@ -2,7 +2,7 @@ import axios from 'axios';
 import logger from "./logService";
 
 
-// centralized place for error handling so we dont reapt
+// centralized place for error handling so we dont repeat
 // code for error handling.
 // two parameters susscess, error only using erro here.
 axios.interceptors.response.use(null, error =>{

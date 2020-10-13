@@ -6,11 +6,6 @@ import { Button } from 'react-bootstrap';
 import {register} from "../services/userService";
 
 const initialstate = { 
-  
-  // usernameError:'',
-  // emailError: '',
-  // passwordError:'',
-
     
    }
 
@@ -21,6 +16,10 @@ state={
   username:'',
   email:'',
   password:'',
+  emailError: '',
+  passwordError:'',
+  usernameError:'',
+  userError: ''
     
 };
 
@@ -53,7 +52,9 @@ validate=()=>{
    usernameError = "username cannot be blank"
 
 
- //  set the state from the validation
+ //  set the state from the validation- code reads:
+//  if any of the variables above are true set the state with the following
+// varibles.
  if(emailError || passwordError || usernameError){
    this.setState({
      emailError : emailError,
@@ -80,14 +81,24 @@ this.doSubmit();
 }
 
   doSubmit =async()=>{
-    const {username,email,password} = this.state
     console.log(this.state)
+    try{
+      // send the updated state through.
      await register(this.state)
+    }
+    catch(ex){
+      if (ex.response && ex.response.status === 400);
+            // clone the errors object
+            const errors = "User already exists or an error has occured";
+            
+            // then call the new state
+            this.setState({userError: errors });
+    }
    
 }
  
   render() {
-    const {emailError, passwordError,usernameError} = this.state
+    const {userError, usernameError, emailError,passwordError} = this.state
     return (
       <div>
         <h1>Sign up</h1>
@@ -98,17 +109,26 @@ this.doSubmit();
         placeholder="username"
         onChange={this.handleChange}
         />
+        <br/>
+        {usernameError ? <div className="alert alert-danger">{usernameError}</div> : null }
+        {userError ? <div className="alert alert-danger">{userError}</div> : null }
+
         <input
         name="email"
         placeholder="email"
         onChange={this.handleChange}
         />
+        <br/>
+        {emailError ? <div className="alert alert-danger">{usernameError}</div> : null }
+
         <input
         name="password"
         placeholder="password"
         type="password"
         onChange={this.handleChange}
         />
+        <br/>
+        {passwordError ? <div className="alert alert-danger">{usernameError}</div> : null }
         <Button variant="primary" type="submit">
         Submit
       </Button>

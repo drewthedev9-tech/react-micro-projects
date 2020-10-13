@@ -18,7 +18,7 @@ const NavBar = () => {
   return (
 <div>
 <Navbar bg="light" expand="lg">
-  <Navbar.Brand href="#home">
+  <Navbar.Brand >
   <Link className="navbar-brand" to="/">
     <img 
     className="skull-pic"

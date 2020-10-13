@@ -1,24 +1,25 @@
 import React, { Component } from 'react';
-// import ParentForm from "./form"
-
+import {login} from '../services/authService';
 import {Form} from 'react-bootstrap';
 import{Button} from 'react-bootstrap';
 
-const initialstate = { 
-  username:'',
-  password:'',
-  name: '',
-  usernameError:'',
-  emailError: '',
-  passwordError:'',
 
+const initialstate = { 
     
-   }
+}
+
 
 class LoginForm extends Component{
 
-  state= initialstate;
-
+  state= { 
+    username:'',
+    email:'',
+    password:'',
+    emailError: '',
+    passwordError:'',
+    usernameError:'',
+    loginError: ''
+  }
     handleChange=(event)=>{
         console.log(event.target.value)
       this.setState({
@@ -70,14 +71,22 @@ class LoginForm extends Component{
       this.setState({
         initialstate : initialstate
       })
-    
       this.doSubmit();
   }
  
 
-  doSubmit=()=>{
-       // call the server
-    console.log("calling the server");
+  doSubmit=async()=>{
+    try{
+        // from authService.js
+     await login(
+      this.state.email,
+      this.state.password
+     )
+
+    }catch(ex){
+
+    }
+  
   }
   render() { 
     const {emailError, passwordError} = this.state
@@ -90,8 +99,9 @@ class LoginForm extends Component{
         <Form.Control 
         name="email"
         onChange={this.handleChange}
-        type="email" 
-        placeholder="Enter email"/>
+        type="text" 
+        placeholder="Enter email address" 
+        />
        
       </Form.Group> 
      
