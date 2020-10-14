@@ -84,7 +84,17 @@ this.doSubmit();
     console.log(this.state)
     try{
       // send the updated state through.
-     await register(this.state)
+      // also get the response
+     const response = await register(this.state)
+      //  testing the response from api to get the jwt
+      console.log(response.data)
+    //  storing the JWT into storage then we can use to log in up registration.
+    // use bracke notation to get x-auth-token
+    localStorage.setItem('token', response.headers['x-auth-token']);
+    //  redirect to home page - old way
+    // this.props.history.push('/');
+    // full application reload.
+    window.location ='/';
     }
     catch(ex){
       if (ex.response && ex.response.status === 400);

@@ -77,19 +77,32 @@ class LoginForm extends Component{
 
   doSubmit=async()=>{
     try{
-        // from authService.js
-     await login(
+      // geting the jwt on this client side
+     const response = await login(
       this.state.email,
       this.state.password
      )
-
+      //  testing the response from api to get the jwt
+      console.log(response.data)
+    //  the data is the returned jwt from API Node.
+    // stores the JWT in local storage.
+     localStorage.setItem('token', response.data);
+    //  navigate them back to the home page.
+    // this.props.history.push('/') - old way
+    // full application reload - compnentdidMount will be reloaded to doits job.
+    window.location ='/';
     }catch(ex){
-
+      if (ex.response && ex.response.status === 400);
+      // clone the errors object
+      const errors = "Invalid email or password";
+      
+      // then call the new state
+      this.setState({loginError: errors });
     }
   
   }
   render() { 
-    const {emailError, passwordError} = this.state
+    const {emailError, passwordError, loginError} = this.state
     return (
       <div>
       <h1>Login</h1>
@@ -104,8 +117,8 @@ class LoginForm extends Component{
         />
        
       </Form.Group> 
-     
-      {this.state.emailError ? <div className="alert alert-danger">{emailError}</div> : null }
+      {loginError ? <div className="alert alert-danger">{loginError}</div> : null }
+      {emailError ? <div className="alert alert-danger">{emailError}</div> : null }
     
       <Form.Group controlId="formBasicPassword">
       <Form.Label>Password</Form.Label>

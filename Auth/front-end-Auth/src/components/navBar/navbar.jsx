@@ -10,11 +10,9 @@ import {Nav} from "react-bootstrap";
 // import {Button} from "react-bootstrap";
 
 
-
-
-
-
-const NavBar = () => {
+// react.fragment needed to treat the elements as one in JSX'
+// needed if we are trying t group elemnts into one node elemnet
+const NavBar = (props) => {
   return (
 <div>
 <Navbar bg="light" expand="lg">
@@ -30,7 +28,15 @@ const NavBar = () => {
   <Navbar.Toggle aria-controls="basic-navbar-nav" />
   <Navbar.Collapse id="basic-navbar-nav">
     <Nav className="mr-auto">
-      <Nav.Link>
+    <Nav.Link>
+    <Link className="nav-link" to="/admin">
+        Admin
+      </Link>
+    </Nav.Link>
+     {/* if user is logged in || otherwords there is no token*/}
+     { !props.user && ( 
+      <React.Fragment>
+        <Nav.Link>
         <Link className="nav-link" to="/register">
           Sign Up
         </Link>
@@ -40,12 +46,26 @@ const NavBar = () => {
           Login
         </Link>
       </Nav.Link>
-      <Nav.Link>
-      <Link className="nav-link" to="/admin">
-          Admin
-        </Link>
-      </Nav.Link>
+      </React.Fragment>
+      )}
+      {/* if user is logged in*/}
+      { props.user && ( 
+        <React.Fragment>
+          <Nav.Link>
+          <Link className="nav-link" to="/profile">
+          {/* grab name from the decoded JWt in state in app component*/}
+            {props.user.name}
+          </Link>
+        </Nav.Link>
+        <Nav.Link>
+        <Link className="nav-link" to="/logout">
+            Logout
+          </Link>
+        </Nav.Link>
+        </React.Fragment>
+        )}
       
+     
      
     </Nav>
     
