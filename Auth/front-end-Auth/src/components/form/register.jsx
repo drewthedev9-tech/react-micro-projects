@@ -86,7 +86,7 @@ this.doSubmit();
       // send the updated state through.
       // also get the response
      const response = await register(this.state)
-      //  testing the response from api to get the jwt
+      //  testing the response from api to get the jwt from API.
       console.log(response.data)
     //  storing the JWT into storage then we can use to log in up registration.
     // use bracke notation to get x-auth-token

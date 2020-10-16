@@ -88,6 +88,7 @@ class LoginForm extends Component{
     // stores the JWT in local storage.
      localStorage.setItem('token', response.data);
     //  navigate them back to the home page.
+    // history comes from react-router into all props components.
     // this.props.history.push('/') - old way
     // full application reload - compnentdidMount will be reloaded to doits job.
     window.location ='/';

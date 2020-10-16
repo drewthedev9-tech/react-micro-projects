@@ -4,6 +4,7 @@ import jwtDecode from 'jwt-decode';
 import NavBar from "./components/navBar/navbar";
 import Register from "./components/form/register";
 import Login from "./components/form/login";
+import Logout from "./components/logout";
 import Home from "./components/home";
 import Dashboard from "./components/admin/dashboard";
 // import ProductDetails from "./components/productDetails";
@@ -18,7 +19,7 @@ state ={}
 componentDidMount(){
   // need a try catch because app will crash if it has a invalid JWT.
   try{
-    // calling the localStorage
+    // getting the jwt fro the localStorage
     const jwt = localStorage.getItem("token");
     // 3rd party library
     const user = jwtDecode(jwt);
@@ -41,6 +42,7 @@ componentDidMount(){
          
           <Route path="/register" component={Register} />
             <Route path="/login" component={Login}/>
+            <Route path="/logout" component={Logout}/>
             <Route path="/not-found" component={NotFound}/>
             <Route path="/admin" component={Dashboard}/>
             <Route path="/" exact component={Home}/>
