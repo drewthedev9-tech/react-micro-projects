@@ -90,7 +90,8 @@ class LoginForm extends Component{
     //  navigate them back to the home page.
     // history comes from react-router into all props components.
     // this.props.history.push('/') - old way
-    // full application reload - compnentdidMount will be reloaded to doits job.
+    // full application reload - compnentdidMount will be reloaded to doits job.aws for software developers
+    // navigate back to home page.
     window.location ='/';
     }catch(ex){
       if (ex.response && ex.response.status === 400);

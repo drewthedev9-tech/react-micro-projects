@@ -1,9 +1,10 @@
 import React, { Component } from "react";
 // import ParentForm from "./form.jsx"
-// import {Form} from 'react-bootstrap'
+ import {Form} from 'react-bootstrap'
 import { Button } from 'react-bootstrap';
 // imoprt all the methods in the userService object below
 import {register} from "../services/userService";
+
 
 const initialstate = { 
     
@@ -113,41 +114,48 @@ this.doSubmit();
       <div>
         <h1>Sign up</h1>
 
-       <form onSubmit={this.handleSubmit}>
-        <input
+        <Form onSubmit={this.handleSubmit}>
+      <Form.Group controlId="formBasicEmail">
+        <Form.Label>Username</Form.Label>
+        <Form.Control 
         name="username"
-        placeholder="username"
         onChange={this.handleChange}
+        type="text" 
+        placeholder="Enter Username" 
         />
-        <br/>
-        {usernameError ? <div className="alert alert-danger">{usernameError}</div> : null }
-        {userError ? <div className="alert alert-danger">{userError}</div> : null }
-
-        <input
+       
+      </Form.Group> 
+      {usernameError ? <div className="alert alert-danger">{usernameError}</div> : null }
+      {userError ? <div className="alert alert-danger">{userError}</div> : null }
+    
+      <Form.Group controlId="formBasicPassword">
+      <Form.Label>Email</Form.Label>
+        <Form.Control 
         name="email"
-        placeholder="email"
         onChange={this.handleChange}
+        type="text" 
+        placeholder="Enter email" 
         />
-        <br/>
-        {emailError ? <div className="alert alert-danger">{usernameError}</div> : null }
+      </Form.Group>
+      {emailError ? <div className="alert alert-danger">{usernameError}</div> : null }
 
-        <input
+      <Form.Group controlId="formBasicPassword">
+      <Form.Label>Password</Form.Label>
+        <Form.Control 
         name="password"
-        placeholder="password"
-        type="password"
         onChange={this.handleChange}
+        type="password" 
+        placeholder=" Enter Password" 
         />
-        <br/>
-        {passwordError ? <div className="alert alert-danger">{usernameError}</div> : null }
-        <Button variant="primary" type="submit">
+      </Form.Group>
+    
+      {passwordError ? <div className="alert alert-danger">{passwordError}</div> : null }
+     
+      <Button variant="primary" type="submit">
         Submit
       </Button>
-       </form>
-       
-       
-
-    
-      </div>
+    </Form>
+    </div>
     );
   }
 }

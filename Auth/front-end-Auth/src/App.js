@@ -21,7 +21,7 @@ componentDidMount(){
   try{
     // getting the jwt fro the localStorage
     const jwt = localStorage.getItem("token");
-    // 3rd party library
+    // 3rd party library to decode the jwt and get user
     const user = jwtDecode(jwt);
     // see the decode JWT
     console.log(user)
@@ -36,6 +36,7 @@ componentDidMount(){
   render() {
     return (
       <div>
+      {/*sending decoded jwt object to navbar*/}
         <NavBar user={this.state.user}/>
         <div className="content">
           <Switch>

@@ -45,9 +45,9 @@ async componentDidMount() {
     // including post.id in the url
     // updating the apiendpoint and the id in the API response see the JSONtypicode to see.
     // second argument is the entire post, you have to do when your using put method
-   const {data} = await http.put(config.apiEndpoint + '/' + post.id, post)
+   const response = await http.put(config.apiEndpoint + '/' + post.id, post)
   //  inspect data
-    console.log(data);
+    console.log(response.data);
     // updating UI
     // cloning the state with all the posts
     const posts =[...this.state.posts];
