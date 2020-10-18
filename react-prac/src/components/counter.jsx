@@ -5,7 +5,7 @@ import React, { Component } from 'react';
 // setting state up ////
 
 class Counter extends Component {
-// class with constructor god for passing props to the class inapp.js
+// class with constructor good for passing props to the class inapp.js
 // otherwise class field declarartion is fine as well.
     constructor(props) {
         super(props);

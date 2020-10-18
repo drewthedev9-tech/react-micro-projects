@@ -1,35 +1,22 @@
 import React, { Component } from 'react';
-import axios from 'axios';
+
 import {Card} from "react-bootstrap";
 import {Button} from "react-bootstrap";
 import "./card.css"
 
 
 class CardProfile  extends Component {
-    state = { 
-        profiles:[]
-        
-     }
-
- async componentDidMount(){
-    const url = "https://randomuser.me/api?results=6"
-    const response =  await axios.get(url)
-    console.log(response.data.results)
-    this.setState({
-        profiles: response.data.results
-    })
-    // test state to see if it has API info.
-    console.log(this.state.profiles)
+   
     
-}
-
     render() { 
-        const {profiles} = this.state
+        const {users} = this.props
         return ( 
             <React.Fragment>
             <h1>User profiles</h1>
+          
             <div className="flex-box">
-                {profiles.map(people=>(
+              
+                {users.map(people=>(
                 <div key={people.login.uuid}>
                 <div className="card-container">
                     <Card style={{ width: '18rem' }}>
