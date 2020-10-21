@@ -1,12 +1,23 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
+import App from './containers/App';
+import {Provider} from "react-redux"
+import {searchRobots} from './redux/reducers';
+import {createStore} from 'redux';
 import * as serviceWorker from './serviceWorker';
+
+
+const store =createStore(searchRobots)
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+  {/* Provider will pass the store down to every child of the app
+  Inother words all our components*/}
+  <Provider store={store}>
+      <App/>
+  </Provider>
+   
   </React.StrictMode>,
   document.getElementById('root')
 );
